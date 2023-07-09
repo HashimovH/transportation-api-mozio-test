@@ -12,6 +12,7 @@ class HTTPMethod(enum.Enum):
 
 
 class MozioClient(TransporationClient):
+    requires_polling = True
 
     def __init__(self, base_url, access_token) -> None:
         self.base_url = base_url

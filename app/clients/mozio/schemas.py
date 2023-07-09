@@ -66,12 +66,87 @@ class SearchProcessResponseBase(BaseModel):
     pickup_datetime: Optional[str]
 
 
+class SearchResultTotalPrice(BaseModel):
+    value: str
+    display: str
+    compact: str
+
+
+class SearchResultTotalPriceBase(BaseModel):
+    total_price: Optional[SearchResultTotalPrice]
+
+
+class SearchResultStepsDetailsVehicle(BaseModel):
+    image: Optional[str]
+    vehicle_type: Optional[dict]
+    max_bags: Optional[int]
+    is_max_bags_per_person: Optional[bool]
+    max_passangers: Optional[int]
+    category: Optional[dict]
+    num_vehicles: Optional[int]
+    total_bags: Optional[int]
+    model: Optional[str]
+    make: Optional[str]
+    vehicle_class: Optional[int]
+    vehicle_class_details: Optional[dict]
+
+
+class SearchResultStepsDetailsProvider(BaseModel):
+    name: str
+    display_name: str
+    logo_url: str
+    rating: int
+    rating_count: int
+    rating_with_decimals: str
+
+
+class SearchResultStepsDetailsCancellation(BaseModel):
+    cancellabe_online: Optional[bool]
+    cancellabe_offline: Optional[bool]
+    amendable: Optional[bool]
+    policy: Optional[list]
+
+
+class SearchResultStepsDetails(BaseModel):
+    description: Optional[str]
+    vehicle: Optional[SearchResultStepsDetailsVehicle]
+    time: Optional[int]
+    provider: Optional[SearchResultStepsDetailsProvider]
+    provider_name: Optional[str]
+    price: Optional[SearchResultTotalPriceBase]
+    cancellation: Optional[SearchResultStepsDetailsCancellation]
+    departure_datetime: Optional[str]
+    wait_time: Optional[dict]
+    amenities: Optional[list]
+    ticket_types: Optional[list]
+    flight_info_required: Optional[bool]
+    extra_pax_required: Optional[bool]
+    notes: Optional[str]
+    terms_url: Optional[str]
+    bookable: Optional[bool]
+
+
+class SearchResultSteps(BaseModel):
+    main: bool
+    step_type: str
+    details: SearchResultStepsDetails
+
+
+class SearchResult(BaseModel):
+    result_id: str
+    vehicle_id: str
+    good_to_know_info: str
+    total_price: SearchResultTotalPriceBase
+    tags: Optional[list]
+    steps: list[SearchResultSteps]
+
+
 class StartSearchProcessResponse(SearchProcessResponseBase):
     results: Optional[list]
 
 
 class PollSearchResponse(SearchProcessResponseBase):
-    results: list
+    results: list[SearchResult]
     allow_delayed_flight_info: Optional[bool]
 
 

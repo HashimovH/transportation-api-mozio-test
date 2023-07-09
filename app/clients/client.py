@@ -12,6 +12,8 @@ class HTTPMethod(enum.Enum):
 
 
 class TransporationClient(abc.ABC):
+    requires_polling = False
+
     def make_request(self, method: HTTPMethod, url: str, data=None, headers: dict = dict({})) -> requests.Response:
         try:
             response: requests.Response = requests.request(

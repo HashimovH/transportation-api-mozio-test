@@ -39,6 +39,7 @@ def test_poll_search(client):
     assert response.end_location.formatted_address == "San Francisco International Airport"
     assert response.num_passengers == 2
     assert len(response.results) > 1
+    assert response.results[0].total_price.total_price.value == "211.73"
 
 
 @pytest.mark.vcr
