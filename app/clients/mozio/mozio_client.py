@@ -1,5 +1,5 @@
-from app.clients.exceptions import MoziaClientRequestFailed, MoziaClientTimeout, MozioClientInvalidRequest
-from app.clients.schemas import CancelReservationResponse, PollReservationResponse, PollSearchResponse, StartReservationResponse, StartSearchProcessRequest, StartSearchProcessResponse
+from app.clients.client import TransporationClient
+from app.clients.mozio.schemas import CancelReservationResponse, PollReservationResponse, PollSearchResponse, StartReservationResponse, StartSearchProcessRequest, StartSearchProcessResponse
 import requests
 import enum
 from app import settings
@@ -11,7 +11,7 @@ class HTTPMethod(enum.Enum):
     DELETE = "DELETE"
 
 
-class MozioClient:
+class MozioClient(TransporationClient):
 
     def __init__(self, base_url, access_token) -> None:
         self.base_url = base_url
@@ -22,22 +22,7 @@ class MozioClient:
                    "Content-Type": "application/json"}
         url = f"{self.base_url}{url}"
 
-        try:
-            response: requests.Response = requests.request(
-                method=method,
-                url=url,
-                headers=headers,
-                json=data
-            )
-            response.raise_for_status()
-        except requests.exceptions.HTTPError as e:
-            raise MozioClientInvalidRequest(e.response)
-        except requests.exceptions.Timeout as e:
-            raise MoziaClientTimeout(e.response)
-        except requests.exceptions.RequestException as e:
-            raise MoziaClientRequestFailed(e.response)
-
-        return response
+        return self.make_request(method, url, data, headers)
 
     def start_search(self, request: StartSearchProcessRequest) -> StartSearchProcessResponse:
         method = "POST"

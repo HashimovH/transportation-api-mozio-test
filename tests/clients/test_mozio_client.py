@@ -1,6 +1,6 @@
 import pytest
 
-from app.clients.mozio_client import MozioClient
+from app.clients.mozio.mozio_client import MozioClient
 
 
 @pytest.fixture(scope="session")
