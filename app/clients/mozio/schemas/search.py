@@ -1,25 +1,6 @@
 from pydantic import BaseModel
 from typing import Optional
-import enum
-
-
-class MozioModes(enum.Enum):
-    ONE_WAY = "one_way"
-    ROUND_TRIP = "round_trip"
-    HOURLY = "hourly"
-    DATELESS = "dateless"
-    DATELESS_ROUND_TRIP = "dateless_round_trip"
-
-
-class MozioFlightTypes(enum.Enum):
-    DOMESTIC = "domestic"
-    INTERNATIONAL = "international"
-
-
-class MozioReservationStatus(enum.Enum):
-    PENDING = "pending"
-    COMPLETED = "completed"
-    FAILED = "failed"
+from app.clients.mozio.schemas.common import MozioModes, MozioFlightTypes, MozioReservationStatus
 
 
 class StartSearchProcessRequest(BaseModel):
@@ -148,17 +129,3 @@ class StartSearchProcessResponse(SearchProcessResponseBase):
 class PollSearchResponse(SearchProcessResponseBase):
     results: list[SearchResult]
     allow_delayed_flight_info: Optional[bool]
-
-
-class StartReservationResponse(BaseModel):
-    status: MozioReservationStatus
-    reservations: list
-
-
-class PollReservationResponse(StartReservationResponse):
-    pass
-
-
-class CancelReservationResponse(BaseModel):
-    refunded: int
-    cancelled: int

@@ -1,8 +1,9 @@
 from app.clients.client import TransporationClient
-from app.clients.mozio.schemas import CancelReservationResponse, PollReservationResponse, PollSearchResponse, StartReservationResponse, StartSearchProcessRequest, StartSearchProcessResponse
 import requests
 import enum
 from app import settings
+from app.clients.mozio.schemas.reservation import CancelReservationResponse, PollReservationResponse, StartReservationResponse
+from app.clients.mozio.schemas.search import PollSearchResponse, StartSearchProcessRequest, StartSearchProcessResponse
 
 
 class HTTPMethod(enum.Enum):
