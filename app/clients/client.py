@@ -51,3 +51,7 @@ class TransporationClient(abc.ABC):
     @abc.abstractmethod
     def cancel_reservation(self, confirmation_number: str):
         pass
+
+    @abc.abstractmethod
+    def convert_search_result(self, search_result):
+        pass

@@ -82,8 +82,8 @@ class SearchResultStepsDetailsProvider(BaseModel):
 
 
 class SearchResultStepsDetailsCancellation(BaseModel):
-    cancellabe_online: Optional[bool]
-    cancellabe_offline: Optional[bool]
+    cancellable_online: Optional[bool]
+    cancellable_offline: Optional[bool]
     amendable: Optional[bool]
     policy: Optional[list]
 

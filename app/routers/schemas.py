@@ -1,3 +1,4 @@
+from typing import Optional
 from pydantic import BaseModel
 
 
@@ -31,3 +32,51 @@ class StartReservationAPIRequest(BaseModel):
 class CancelReservationAPIResponse(BaseModel):
     refunded: bool
     cancelled: bool
+
+
+class SearchResultResponseVehicle(BaseModel):
+    image_url: Optional[str]
+    vehicle_type: Optional[str]
+    max_bags: Optional[int]
+    max_bags_for_each_passenger: Optional[bool]
+    max_passengers: Optional[int]
+    category: Optional[str]
+    num_vehicles: Optional[int]
+    model: Optional[str]
+    make: Optional[str]
+    vehicle_class: Optional[str]
+
+
+class SearchResultResponseProvider(BaseModel):
+    name: str
+    display_name: str
+    logo_url: str
+    rating: float
+    rating_count: int
+
+
+class SearchResultReponse(BaseModel):
+    result_id: str
+    vehicle_id: str
+    good_to_know_into: str
+    tags: Optional[list]
+    price: str
+    price_currency: str
+    description: str
+    vehicle: Optional[SearchResultResponseVehicle]
+    time: int
+    provider: Optional[SearchResultResponseProvider]
+    can_cancel_online: bool
+    can_cancel_offline: bool
+    can_amend: bool
+    cancel_notice: int
+    cancel_refund_percent: int
+    departure_time: str
+    wait_time_minutes: int
+    amenities: list
+    alternative_departure_time: Optional[str]
+    alternative_arrival_time:   Optional[str]
+    needs_flight_info: bool
+    notes: Optional[str]
+    terms: Optional[str]
+    can_booked: bool

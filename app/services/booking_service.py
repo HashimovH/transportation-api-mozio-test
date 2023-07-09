@@ -1,4 +1,4 @@
-from app.routers.schemas import CancelReservationAPIResponse, StartReservationAPIRequest, StartOperationsAPIResponse, StartSearchAPIRequest
+from app.routers.schemas import CancelReservationAPIResponse, SearchResultReponse, StartReservationAPIRequest, StartOperationsAPIResponse, StartSearchAPIRequest
 
 
 class BookingService:
@@ -9,9 +9,11 @@ class BookingService:
         response = self.transportation_client.start_search(request)
         return StartOperationsAPIResponse(is_loading=response.more_coming)
 
-    def poll_search_process(self, search_id: str) -> tuple[list, bool]:
+    def poll_search_process(self, search_id: str) -> tuple[SearchResultReponse, bool]:
         response = self.transportation_client.poll_search(search_id)
-        return response.results, response.more_coming
+        converted_results = self.transportation_client.convert_search_result(
+            response)
+        return SearchResultReponse(**converted_results), response.more_coming
 
     def start_reservation(self, request: StartReservationAPIRequest) -> StartOperationsAPIResponse:
         response = self.transportation_client.start_reservation(request)
