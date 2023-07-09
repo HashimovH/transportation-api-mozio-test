@@ -1,6 +1,15 @@
 -r requirements.in
 
+pip-tools
+
+coverage
+pytest
+pytest-vcr
+pytest-cov
+vcrpy
+
 black
 flake8
 isort
 mypy
+yamllint

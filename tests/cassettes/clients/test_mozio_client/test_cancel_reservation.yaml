@@ -1,0 +1,82 @@
+interactions:
+- request:
+    body: null
+    headers:
+      API-KEY:
+      - 6bd1e15ab9e94bb190074b4209e6b6f9
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.31.0
+    method: DELETE
+    uri: https://api-testing.mozio.com/v2/reservations/2a0ca06bb2fa482c9d7fe56f0671fee8
+  response:
+    body:
+      string: ''
+    headers:
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en-us
+      Content-Length:
+      - '0'
+      Content-Type:
+      - text/html; charset=utf-8
+      Date:
+      - Sun, 09 Jul 2023 11:57:45 GMT
+      Location:
+      - /v2/reservations/2a0ca06bb2fa482c9d7fe56f0671fee8/
+      Server:
+      - gunicorn
+      Vary:
+      - Origin, Accept-Language
+    status:
+      code: 301
+      message: Moved Permanently
+- request:
+    body: null
+    headers:
+      API-KEY:
+      - 6bd1e15ab9e94bb190074b4209e6b6f9
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.31.0
+    method: DELETE
+    uri: https://api-testing.mozio.com/v2/reservations/2a0ca06bb2fa482c9d7fe56f0671fee8/
+  response:
+    body:
+      string: '{"refunded":1,"cancelled":1,"coupon_code":null}'
+    headers:
+      Allow:
+      - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en-us
+      Content-Length:
+      - '47'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 09 Jul 2023 11:57:46 GMT
+      Server:
+      - gunicorn
+      Vary:
+      - Accept, Origin, Accept-Language, Cookie
+    status:
+      code: 202
+      message: Accepted
+version: 1

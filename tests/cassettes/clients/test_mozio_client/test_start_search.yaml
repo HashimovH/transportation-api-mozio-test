@@ -1,0 +1,53 @@
+interactions:
+- request:
+    body: '{"start_address": "44 Tehama Street, San Francisco, CA, USA", "end_address":
+      "SFO", "mode": "one_way", "pickup_datetime": "2023-12-01 15:30", "num_passengers":
+      2, "currency": "USD", "campaign": "Hashim Hashimov"}'
+    headers:
+      API-KEY:
+      - 6bd1e15ab9e94bb190074b4209e6b6f9
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '212'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.31.0
+    method: POST
+    uri: https://api-testing.mozio.com/v2/search/
+  response:
+    body:
+      string: '{"num_passengers":2,"pickup_datetime":"2023-12-01T15:30:00-08:00","flight_datetime":null,"include_platform_fee":false,"include_target_pricing":true,"go_corp_id":null,"search_id":"d1e0c6e8526046d8b73d7ce3c44b5403","results":[],"currency_info":{"code":"USD","prefix_symbol":"$","suffix_symbol":""},"start_location":{"full_address":"44
+        Tehama Street, San Francisco, CA, USA","formatted_address":"44 Tehama St,
+        San Francisco, CA 94105, USA","lat":37.7876372,"lng":-122.3967284,"timezone":"America/Los_Angeles","iata_code":"","icao_code":"","rail_iata_code":"","uic_code":"","metrolinx_code":"","place_id":"ChIJP4VfvHyAhYAR2Qmk3SkQLd0","type":"place","is_cruise_port":false,"is_train_station":false,"is_transit_station":false,"is_incomplete":false,"favorite_id":null,"favorite_source":null},"end_location":{"full_address":"San
+        Francisco International Airport","formatted_address":"San Francisco International
+        Airport","lat":37.619105,"lng":-122.375237,"timezone":"America/Los_Angeles","iata_code":"SFO","icao_code":"KSFO","rail_iata_code":"","uic_code":"","metrolinx_code":"","place_id":"","type":"place","is_cruise_port":false,"is_train_station":false,"is_transit_station":false,"is_incomplete":false,"favorite_id":null,"favorite_source":null},"created_at":1688902645,"expires_at":1688903545,"expires_in":899,"more_coming":true,"allow_delayed_flight_info":false,"hourly_booking_duration":0,"flight_type":"domestic"}'
+    headers:
+      Allow:
+      - POST, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en-us
+      Content-Length:
+      - '1411'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 09 Jul 2023 11:37:25 GMT
+      Server:
+      - gunicorn
+      Set-Cookie:
+      - sessionid=xk7py63xcs8c5p40n6a1axe297xoj940; expires=Sun, 23 Jul 2023 11:37:25
+        GMT; HttpOnly; Max-Age=1209600; Path=/; SameSite=Lax; Secure
+      Vary:
+      - Accept, Origin, Accept-Language, Cookie
+    status:
+      code: 201
+      message: Created
+version: 1
