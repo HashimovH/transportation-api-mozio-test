@@ -1,29 +1,22 @@
-name: Quality
+name: Pylint
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
-    
+on: [push]
+
 jobs:
-  test:
-  
+  build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.8", "3.9", "3.10"]
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up Python 3.10
-        uses: actions/setup-python@v3
-        with:
-          python-version: 3.10
-      - name: Install dependencies
-        run: |
-          make install
-      - name: Static Code Linting with flake8
-        run: |
-          make lint
-      - name: Unit Testing with pytest
-        run: |
-          make test
+    - uses: actions/checkout@v3
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v3
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        make install
+    - name: Analysing the code with pylint
+      run: |
+        make lint
