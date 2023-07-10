@@ -1,8 +1,3 @@
-.PHONY: help
-.DEFAULT_GOAL := help
-
--include .env
-
 install: ## Install requirements
     pip install -r requirements.dev.txt
 
