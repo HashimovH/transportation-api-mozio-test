@@ -1,0 +1,19 @@
+## My thoughts about Application Local Setup
+
+In my opinion, `docker-compose` or another lightweight container orchestration tool is the best solution for making application up in the local environment.
+
+### Prequisite
+Clone the repository by using `git clone https://github.com/HashimovH/transportation-api-mozio-test` command and then `cd transportation-api-mozio-test`
+
+### Running via Docker
+```
+docker build -t mozio-test .
+docker run -p 8080:8080 mozio-test
+```
+
+command will create container in the `8080` port and it will provide gRPC **reflection** since settings contains `APP_ENV=development` inside compose file.
+
+
+### Using uvicorn
+
+If you want to start application without containers, after setting up your machine's Python settings, you can achieve it by running `uvicorn app.main:app --port=8000 --reload` in the root folder.
