@@ -19,8 +19,8 @@ jobs:
         pip install -r requirements.dev.txt
     - name: Analysing the code with pylint
       run: |
-        isort --check app tests    
-	      black --check app tests
-        flake8 app tests    
-	      mypy core tests
+        isort --check app tests
+        black --check app tests
+        flake8 app tests
+        mypy core tests
         yamllint --strict .
