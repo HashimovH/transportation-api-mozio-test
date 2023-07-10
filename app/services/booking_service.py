@@ -1,22 +1,32 @@
-from app.routers.schemas import CancelReservationAPIResponse, SearchResultReponse, SearchResultsResponseList, StartReservationAPIRequest, StartOperationsAPIResponse, StartSearchAPIRequest
+from app.routers.schemas import (
+    CancelReservationAPIResponse,
+    SearchResultsResponseList,
+    StartOperationsAPIResponse,
+    StartReservationAPIRequest,
+    StartSearchAPIRequest,
+)
 
 
 class BookingService:
     def __init__(self, transportation_client) -> None:
         self.transportation_client = transportation_client
 
-    def start_search_process(self, request: StartSearchAPIRequest) -> StartOperationsAPIResponse:
+    def start_search_process(
+        self, request: StartSearchAPIRequest
+    ) -> StartOperationsAPIResponse:
         response = self.transportation_client.start_search(request)
         return StartOperationsAPIResponse(is_loading=response.more_coming)
 
-    def poll_search_process(self, search_id: str) -> tuple[SearchResultsResponseList, bool]:
+    def poll_search_process(self, search_id: str) -> SearchResultsResponseList:
         response = self.transportation_client.poll_search(search_id)
-        converted_results = self.transportation_client.convert_search_result(
-            response
+        converted_results = self.transportation_client.convert_search_result(response)
+        return SearchResultsResponseList(
+            results=converted_results, is_loading=response.more_coming
         )
-        return SearchResultsResponseList(__root__=converted_results), response.more_coming
 
-    def start_reservation(self, request: StartReservationAPIRequest) -> StartOperationsAPIResponse:
+    def start_reservation(
+        self, request: StartReservationAPIRequest
+    ) -> StartOperationsAPIResponse:
         response = self.transportation_client.start_reservation(request)
         if response.status.value == "failed":
             raise Exception("Reservation failed")  # TODO: Proper exception
@@ -37,4 +47,6 @@ class BookingService:
 
     def cancel_reservation(self, search_id: str) -> CancelReservationAPIResponse:
         response = self.transportation_client.cancel_reservation(search_id)
-        return CancelReservationAPIResponse(refunded=response.refunded, cancelled=response.cancelled)
+        return CancelReservationAPIResponse(
+            refunded=response.refunded, cancelled=response.cancelled
+        )

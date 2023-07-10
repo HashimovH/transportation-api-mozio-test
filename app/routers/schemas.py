@@ -1,4 +1,5 @@
 from typing import Optional
+
 from pydantic import BaseModel
 
 
@@ -75,7 +76,7 @@ class SearchResultReponse(BaseModel):
     wait_time_minutes: int
     amenities: list
     alternative_departure_time: Optional[str]
-    alternative_arrival_time:   Optional[str]
+    alternative_arrival_time: Optional[str]
     needs_flight_info: bool
     notes: Optional[str]
     terms: Optional[str]
@@ -83,4 +84,5 @@ class SearchResultReponse(BaseModel):
 
 
 class SearchResultsResponseList(BaseModel):
-    __root__: list[SearchResultReponse]
+    results: list[SearchResultReponse]
+    is_loading: bool

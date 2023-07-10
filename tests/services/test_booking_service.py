@@ -1,13 +1,14 @@
 import pytest
 
 from app.clients.mozio.mozio_client import MozioClient
-from app.routers.schemas import SearchResultsResponseList
 from app.services.booking_service import BookingService
 
 
 @pytest.fixture(scope="session")
 def client():
-    return MozioClient("https://api-testing.mozio.com/v2/", "6bd1e15ab9e94bb190074b4209e6b6f9")
+    return MozioClient(
+        "https://api-testing.mozio.com/v2/", "6bd1e15ab9e94bb190074b4209e6b6f9"
+    )
 
 
 @pytest.fixture(scope="session")
@@ -24,7 +25,7 @@ def test_service_start_search(service):
         "pickup_datetime": "2023-12-01 15:30",
         "num_passengers": 2,
         "currency": "USD",
-        "campaign": "Hashim Hashimov"
+        "campaign": "Hashim Hashimov",
     }
     response = service.start_search_process(request)
     assert response.is_loading
@@ -34,7 +35,7 @@ def test_service_start_search(service):
 def test_poll_search_in_service(service):
     response = service.poll_search_process("187003663b8f4a5ca7c079e6df057cd3")
     assert response
-    assert len(response) > 0
+    assert len(response.results) > 0
 
 
 @pytest.mark.vcr
@@ -49,7 +50,7 @@ def test_start_reservation(service):
         "last_name": "Doe",
         "airline": "AA",
         "flight_number": "123",
-        "customer_special_instructions": "I am from VCR testing"
+        "customer_special_instructions": "I am from VCR testing",
     }
     response = service.start_reservation(request)
     assert response
@@ -58,7 +59,6 @@ def test_start_reservation(service):
 
 @pytest.mark.vcr
 def test_poll_reservation(service):
-    response, more_coming = service.poll_reservation(
-        "187003663b8f4a5ca7c079e6df057cd3")
+    response, more_coming = service.poll_reservation("187003663b8f4a5ca7c079e6df057cd3")
     assert response
     assert not more_coming

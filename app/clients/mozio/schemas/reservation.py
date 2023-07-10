@@ -1,5 +1,7 @@
-from pydantic import BaseModel
 from typing import Any, Optional
+
+from pydantic import BaseModel
+
 from app.clients.mozio.schemas.common import MozioReservationStatus
 
 

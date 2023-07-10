@@ -1,6 +1,8 @@
-from pydantic import BaseModel
 from typing import Optional
-from app.clients.mozio.schemas.common import MozioModes, MozioFlightTypes, MozioReservationStatus
+
+from pydantic import BaseModel
+
+from app.clients.mozio.schemas.common import MozioFlightTypes, MozioModes
 
 
 class StartSearchProcessRequest(BaseModel):

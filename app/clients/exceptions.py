@@ -4,7 +4,9 @@ import requests
 class TransportationClientInvalidRequest(Exception):
     def __init__(self, response: requests.Response) -> None:
         self.response = response
-        self.message = f"Invalid request to {response.url}: {response.status_code} {response.text}"
+        self.message = (
+            f"Invalid request to {response.url}: {response.status_code} {response.text}"
+        )
         super().__init__(self.message)
 
 

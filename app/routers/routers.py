@@ -1,7 +1,13 @@
 from fastapi import APIRouter, Depends
-from app.dependencies.booking_service import get_booking_service
 
-from app.routers.schemas import CancelReservationAPIResponse, StartOperationsAPIResponse, StartReservationAPIRequest, StartSearchAPIRequest
+from app.dependencies.booking_service import get_booking_service
+from app.routers.schemas import (
+    CancelReservationAPIResponse,
+    SearchResultsResponseList,
+    StartOperationsAPIResponse,
+    StartReservationAPIRequest,
+    StartSearchAPIRequest,
+)
 from app.services.booking_service import BookingService
 
 router = APIRouter()
@@ -10,27 +16,37 @@ router = APIRouter()
 @router.post(
     "/api/v1/search",
     response_model=StartOperationsAPIResponse,
-    description="Starts a search process and returns status of loading parameter. Send second request to /api/v1/search/{search_id}/more to get results.",
+    description="""Starts a search process and returns status of loading parameter. 
+    Send second request to /api/v1/search/{search_id}/more to get results.""",
     name="Start Search",
-    tags=["search"]
+    tags=["search"],
 )
 def start_search(
-    request: StartSearchAPIRequest, booking_service: BookingService = Depends(get_booking_service)
+    request: StartSearchAPIRequest,
+    booking_service: BookingService = Depends(get_booking_service),
 ) -> StartOperationsAPIResponse:
     return booking_service.start_search_process(request)
 
 
-@router.get("/api/v1/search/{search_id}/more")
+@router.get(
+    "/api/v1/search/{search_id}/more",
+    response_model=SearchResultsResponseList,
+    description="""Returns results of search process. 
+    If loading is true, send another request to this endpoint to get more results.""",
+    name="Get Search Results",
+    tags=["search"],
+)
 def poll_search(
     search_id: str, booking_service: BookingService = Depends(get_booking_service)
-):
+) -> SearchResultsResponseList:
     search_result = booking_service.poll_search_process(search_id)
     return search_result
 
 
 @router.post("/api/v1/reservation")
 def start_reservation(
-    request: StartReservationAPIRequest, booking_service: BookingService = Depends(get_booking_service)
+    request: StartReservationAPIRequest,
+    booking_service: BookingService = Depends(get_booking_service),
 ) -> StartOperationsAPIResponse:
     return booking_service.start_reservation(request)
 

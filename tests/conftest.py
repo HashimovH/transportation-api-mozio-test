@@ -1,17 +1,18 @@
-from pytest import fixture
 import os
 
+from pytest import fixture
 
-@fixture(scope='session')
+
+@fixture(scope="session")
 def vcr_config():
     return {
         "match_on": ["method", "uri", "body", "headers"],
         "record_mode": "once",
-        "decode_compressed_response": True
+        "decode_compressed_response": True,
     }
 
 
-@fixture(scope='module')
+@fixture(scope="module")
 def vcr_cassette_dir(request):
     test_root = os.path.dirname(__file__)
     print(test_root)

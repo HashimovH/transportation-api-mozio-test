@@ -5,7 +5,9 @@ from app.clients.mozio.mozio_client import MozioClient
 
 @pytest.fixture(scope="session")
 def client():
-    return MozioClient("https://api-testing.mozio.com/v2/", "6bd1e15ab9e94bb190074b4209e6b6f9")
+    return MozioClient(
+        "https://api-testing.mozio.com/v2/", "6bd1e15ab9e94bb190074b4209e6b6f9"
+    )
 
 
 @pytest.mark.vcr
@@ -17,14 +19,19 @@ def test_start_search(client):
         "pickup_datetime": "2023-12-01 15:30",
         "num_passengers": 2,
         "currency": "USD",
-        "campaign": "Hashim Hashimov"
+        "campaign": "Hashim Hashimov",
     }
     response = client.start_search(request)
     assert response
     assert response.currency_info.code == "USD"
     assert response.more_coming
-    assert response.start_location.full_address == "44 Tehama Street, San Francisco, CA, USA"
-    assert response.end_location.formatted_address == "San Francisco International Airport"
+    assert (
+        response.start_location.full_address
+        == "44 Tehama Street, San Francisco, CA, USA"
+    )
+    assert (
+        response.end_location.formatted_address == "San Francisco International Airport"
+    )
     assert response.num_passengers == 2
 
 
@@ -35,8 +42,13 @@ def test_poll_search(client):
     assert response
     assert response.currency_info.code == "USD"
     assert not response.more_coming
-    assert response.start_location.full_address == "44 Tehama Street, San Francisco, CA, USA"
-    assert response.end_location.formatted_address == "San Francisco International Airport"
+    assert (
+        response.start_location.full_address
+        == "44 Tehama Street, San Francisco, CA, USA"
+    )
+    assert (
+        response.end_location.formatted_address == "San Francisco International Airport"
+    )
     assert response.num_passengers == 2
     assert len(response.results) > 1
     assert response.results[0].total_price.total_price.value == "211.73"
@@ -54,7 +66,7 @@ def test_start_reservation(client):
         "last_name": "Doe",
         "airline": "AA",
         "flight_number": "123",
-        "customer_special_instructions": "I am from VCR testing"
+        "customer_special_instructions": "I am from VCR testing",
     }
     response = client.start_reservation(request)
     assert response

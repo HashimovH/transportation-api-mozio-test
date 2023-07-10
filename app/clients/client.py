@@ -1,8 +1,13 @@
-import enum
-import requests
 import abc
+import enum
 
-from app.clients.exceptions import TransportationClientInvalidRequest, TransportationClientRequestFailed, TransportationClientTimeout
+import requests
+
+from app.clients.exceptions import (
+    TransportationClientInvalidRequest,
+    TransportationClientRequestFailed,
+    TransportationClientTimeout,
+)
 
 
 class HTTPMethod(enum.Enum):
@@ -14,13 +19,12 @@ class HTTPMethod(enum.Enum):
 class TransporationClient(abc.ABC):
     requires_polling = False
 
-    def make_request(self, method: HTTPMethod, url: str, data=None, headers: dict = dict({})) -> requests.Response:
+    def make_request(
+        self, method: HTTPMethod, url: str, data=None, headers: dict = dict({})
+    ) -> requests.Response:
         try:
             response: requests.Response = requests.request(
-                method=method,
-                url=url,
-                headers=headers,
-                json=data
+                method=method, url=url, headers=headers, json=data
             )
             response.raise_for_status()
         except requests.exceptions.HTTPError as e:
