@@ -1,6 +1,6 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter
 
-from app.dependencies.booking_service import get_booking_service
+from app.dependencies.booking_service_dependency import get_booking_service
 from app.routers.schemas import (
     CancelReservationAPIResponse,
     SearchResultsResponseList,
@@ -23,7 +23,7 @@ router = APIRouter()
 )
 def start_search(
     request: StartSearchAPIRequest,
-    booking_service: BookingService = Depends(get_booking_service),
+    booking_service: BookingService = get_booking_service,
 ) -> StartOperationsAPIResponse:
     return booking_service.start_search_process(request)
 
@@ -37,7 +37,7 @@ def start_search(
     tags=["search"],
 )
 def poll_search(
-    search_id: str, booking_service: BookingService = Depends(get_booking_service)
+    search_id: str, booking_service: BookingService = get_booking_service
 ) -> SearchResultsResponseList:
     search_result = booking_service.poll_search_process(search_id)
     return search_result
@@ -46,14 +46,14 @@ def poll_search(
 @router.post("/api/v1/reservation")
 def start_reservation(
     request: StartReservationAPIRequest,
-    booking_service: BookingService = Depends(get_booking_service),
+    booking_service: BookingService = get_booking_service,
 ) -> StartOperationsAPIResponse:
     return booking_service.start_reservation(request)
 
 
 @router.get("/api/v1/reservation/{reservation_id}")
 def poll_reservation(
-    reservation_id: str, booking_service: BookingService = Depends(get_booking_service)
+    reservation_id: str, booking_service: BookingService = get_booking_service
 ):
     reservation_result = booking_service.poll_reservation(reservation_id)
     return reservation_result
@@ -61,6 +61,6 @@ def poll_reservation(
 
 @router.delete("/api/v1/reservation/{reservation_id}")
 def cancel_reservation(
-    reservation_id: str, booking_service: BookingService = Depends(get_booking_service)
+    reservation_id: str, booking_service: BookingService = get_booking_service
 ) -> CancelReservationAPIResponse:
     return booking_service.cancel_reservation(reservation_id)

@@ -1,7 +1,7 @@
 from fastapi import Depends
 
 from app import settings
-from app.clients.client import MozioClient
+from app.clients.mozio.mozio_client import MozioClient
 from app.services.booking_service import BookingService
 
 
