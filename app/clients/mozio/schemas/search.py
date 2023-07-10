@@ -62,14 +62,14 @@ class SearchResultStepsDetailsVehicle(BaseModel):
     vehicle_type: Optional[dict]
     max_bags: Optional[int]
     is_max_bags_per_person: Optional[bool]
-    max_passangers: Optional[int]
+    max_passengers: Optional[int]
     category: Optional[dict]
     num_vehicles: Optional[int]
     total_bags: Optional[int]
     model: Optional[str]
     make: Optional[str]
     vehicle_class: Optional[int]
-    vehicle_class_details: Optional[dict]
+    vehicle_class_detail: Optional[dict]
 
 
 class SearchResultStepsDetailsProvider(BaseModel):
@@ -105,6 +105,7 @@ class SearchResultStepsDetails(BaseModel):
     notes: Optional[str]
     terms_url: Optional[str]
     bookable: Optional[bool]
+    alternative_times: Optional[dict]
 
 
 class SearchResultSteps(BaseModel):

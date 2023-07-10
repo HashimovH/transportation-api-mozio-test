@@ -57,12 +57,12 @@ class MozioClient(TransporationClient):
         response = self._make_request(method, url)
         return CancelReservationResponse(**response.json())
 
-    def convert_search_result(self, search_results) -> dict:
+    def convert_search_result(self, search_results) -> list:
         currency = search_results.currency_info.code
         converted_results = []
         results = search_results.results
         for result in results:
-            results.append({
+            converted_results.append({
                 "result_id": result.result_id,
                 "vehicle_id": result.vehicle_id,
                 "good_to_know_into": result.good_to_know_info,
@@ -80,7 +80,7 @@ class MozioClient(TransporationClient):
                     "num_vehicles": result.steps[0].details.vehicle.num_vehicles,
                     "model": result.steps[0].details.vehicle.model,
                     "make": result.steps[0].details.vehicle.make,
-                    "vehicle_class": result.steps[0].details.vehicle.vehicle_class.get('display_name'),
+                    "vehicle_class": result.steps[0].details.vehicle.vehicle_class_detail.get('display_name'),
                 },
                 "time": result.steps[0].details.time,
                 "provider": {
@@ -96,11 +96,11 @@ class MozioClient(TransporationClient):
                 "can_amend": result.steps[0].details.cancellation.amendable,
                 "cancel_notice": result.steps[0].details.cancellation.policy[0].get("notice"),
                 "cancel_refund_percent": result.steps[0].details.cancellation.policy[0].get("refund_percent"),
-                "departure_time": result.steps[0].details.departure_time,
+                "departure_time": result.steps[0].details.departure_datetime,
                 "wait_time_minutes": result.steps[0].details.wait_time.get('minutes_included'),
                 "amenities": result.steps[0].details.amenities,
-                "alternative_departure_time": result.steps[0].details.alternative_times.get('options')[0]["departure_time"],
-                "alternative_arrival_time": result.steps[0].details.alternative_times.get('options')[0]["arrtival_time"],
+                "alternative_departure_time": result.steps[0].details.alternative_times.get('options')[0].get("departure_datetime"),
+                "alternative_arrival_time": result.steps[0].details.alternative_times.get('options')[0].get("arrival_datetime"),
                 "needs_flight_info": result.steps[0].details.flight_info_required,
                 "notes": result.steps[0].details.notes,
                 "terms": result.steps[0].details.terms_url,

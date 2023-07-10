@@ -6,7 +6,7 @@ import os
 def vcr_config():
     return {
         "match_on": ["method", "uri", "body", "headers"],
-        "record_mode": "none",
+        "record_mode": "once",
         "decode_compressed_response": True
     }
 

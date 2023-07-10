@@ -1,0 +1,47 @@
+interactions:
+- request:
+    body: '{"search_id": "187003663b8f4a5ca7c079e6df057cd3", "result_id": "0065652958e49ffe698cca03fdf8c9e4",
+      "email": "pytest@gmail.com", "country_code_name": "US", "phone_number": "8776665544",
+      "first_name": "John", "last_name": "Doe", "airline": "AA", "flight_number":
+      "123", "customer_special_instructions": "I am from VCR testing"}'
+    headers:
+      API-KEY:
+      - 6bd1e15ab9e94bb190074b4209e6b6f9
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '325'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.31.0
+    method: POST
+    uri: https://api-testing.mozio.com/v2/reservations/
+  response:
+    body:
+      string: '{"status":"pending","reservations":[]}'
+    headers:
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en-us
+      Content-Length:
+      - '38'
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 10 Jul 2023 08:03:05 GMT
+      Server:
+      - gunicorn
+      Vary:
+      - Accept, Origin, Accept-Language, Cookie
+    status:
+      code: 201
+      message: Created
+version: 1

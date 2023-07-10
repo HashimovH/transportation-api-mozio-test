@@ -1,0 +1,107 @@
+interactions:
+- request:
+    body: null
+    headers:
+      API-KEY:
+      - 6bd1e15ab9e94bb190074b4209e6b6f9
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.31.0
+    method: GET
+    uri: https://api-testing.mozio.com/v2/reservations/187003663b8f4a5ca7c079e6df057cd3/poll
+  response:
+    body:
+      string: ''
+    headers:
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en-us
+      Content-Length:
+      - '0'
+      Content-Type:
+      - text/html; charset=utf-8
+      Date:
+      - Mon, 10 Jul 2023 08:05:09 GMT
+      Location:
+      - /v2/reservations/187003663b8f4a5ca7c079e6df057cd3/poll/
+      Server:
+      - gunicorn
+      Vary:
+      - Origin, Accept-Language
+    status:
+      code: 301
+      message: Moved Permanently
+- request:
+    body: null
+    headers:
+      API-KEY:
+      - 6bd1e15ab9e94bb190074b4209e6b6f9
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.31.0
+    method: GET
+    uri: https://api-testing.mozio.com/v2/reservations/187003663b8f4a5ca7c079e6df057cd3/poll/
+  response:
+    body:
+      string: '{"status":"completed","reservations":[{"url":"https://api-testing.mozio.com/v2/reservations/49c0214efde9499c922372b52d243fe9/","id":"49c0214efde9499c922372b52d243fe9","amount_paid":"$211.73","gratuity":"$0.00","pickup_instructions":"Your
+        driver will be waiting for you at the entrance of the address provided. Please
+        be ready 15 minutes earlier than scheduled pick-up time. Emergency number:
+        +18002665254","mobile_pickup_instructions":null,"confirmation_number":"6151537","service_instructions":{},"ticket_url":"","voyage":{"flight_datetime":"2023-12-01T18:20:00-08:00","departure_datetime":"2023-12-01T15:30:00-08:00","arrival_datetime":"2023-12-01T15:49:32-08:00","alternative_times":["12-01-2023
+        15:30 -0800"],"alternative_time_index":0,"num_passengers":2,"service_type":1,"meet_and_greet_chosen":false,"currency":"USD","booking_details":{"bookable":1,"start_address_incomplete":false,"end_address_incomplete":false,"is_cached":0,"amendable":1,"cancellable_offline":1,"cancellable_online":1,"cancellation_policy":[{"notice":48,"refund_percent":100}],"gratuity_included":1,"tolls_included":1,"accepts_gratuity":1,"meet_and_greet_available":0,"meet_and_greet_default":0,"meet_and_greet_price":"$0.00","meet_and_greet_raw_price":"0","time_is_estimate":0,"wait_time":30,"waiting_minute_price":null,"terms_url":"","are_terms_internal":false,"notes":"","ignore_flight_info":0,"extra_pax_required":false,"has_vehicle_tracking":false,"has_vehicle_information":false,"cancellable_by_system":false,"provider_pays_cc_fees":false,"hide_options":0,"extra_trip_offer_data":{"extra_trip_search_link":"https://www.mozio.com/en-us/?utm_source=btp&utm_medium=btp&utm_campaign=Extra+Trip+Upsell&campaign=OneWayUpsell&num_passengers=2&start_address=HNL&pickup_datetime=12%2F01%2F2023+02%3A20+PM&coupon_code=XTRIP_NXFSM","extra_trip_iata_code":"HNL","trip_direction":"from","extra_trip_coupon_percentage":10,"extra_trip_coupon_code":"XTRIP_NXFSM"}},"start_location":{"full_address":"44
+        Tehama Street, San Francisco, CA, USA","formatted_address":"44 Tehama St,
+        San Francisco, CA 94105, USA","lat":37.7876372,"lng":-122.3967284,"custom_name":"","name":"","timezone":"America/Los_Angeles","iata_code":"","icao_code":"","uic_code":"","metrolinx_code":"","rail_iata_code":"","place_id":"ChIJP4VfvHyAhYAR2Qmk3SkQLd0","state":"CA","country":"US","zipcode":"94105","is_cruise_port":false,"is_train_station":false,"is_transit_station":false,"street_number":"44","route":"Tehama
+        St","neighborhood":"SoMa","sublocality":"","city":"San Francisco","county":"San
+        Francisco County","google_hotel":false,"google_establishment":true,"source":5,"lang":"en-us","favorite_id":null,"favorite_source":null,"google_result":{"geometry":{"location":{"lat":37.7876372,"lng":-122.3967284},"location_type":"ROOFTOP"},"place_id":"ChIJP4VfvHyAhYAR2Qmk3SkQLd0","address_components":[{"long_name":"44","short_name":"44","types":["street_number"]},{"long_name":"Tehama
+        Street","short_name":"Tehama St","types":["route"]},{"long_name":"SoMa","short_name":"SoMa","types":["neighborhood","political"]},{"long_name":"San
+        Francisco","short_name":"SF","types":["locality","political"]},{"long_name":"San
+        Francisco County","short_name":"San Francisco County","types":["administrative_area_level_2","political"]},{"long_name":"California","short_name":"CA","types":["administrative_area_level_1","political"]},{"long_name":"United
+        States","short_name":"US","types":["country","political"]},{"long_name":"94105","short_name":"94105","types":["postal_code"]}],"formatted_address":"44
+        Tehama St, San Francisco, CA 94105, USA","short_name":"44 Tehama Street","types":["premise"]}},"end_location":{"full_address":"San
+        Francisco International Airport","formatted_address":"San Francisco International
+        Airport","lat":37.619105,"lng":-122.375237,"custom_name":"","name":"","timezone":"America/Los_Angeles","iata_code":"SFO","icao_code":"KSFO","uic_code":"","metrolinx_code":"","rail_iata_code":"","place_id":"","state":"CA","country":"US","zipcode":"94128","is_cruise_port":false,"is_train_station":false,"is_transit_station":false,"street_number":"","route":"","neighborhood":"","sublocality":"","city":"San
+        Francisco","county":"","google_hotel":false,"google_establishment":false,"source":1,"lang":"en-us","favorite_id":null,"favorite_source":null,"google_result":null},"vehicle":{"type":"Sedan","max_passengers":3,"max_bags":3,"is_max_bags_per_person":false,"image_url":"https://sandbox.bookalimo.com/cdn/images/car/42/128.png","category":"car","key":3,"num_vehicles":1,"make":"Cadillac","model":"XTS","vehicle_class":2,"vehicle_class_detail":{"vehicle_class_id":2,"display_name":"Business"},"total_bags":3},"provider_currency":"USD","provider_phone":"","provider_email":"","provider_name":"ICS,
+        Book A Limo","start_difference":0.0,"end_difference":0.0,"steps":[{"main":true,"step_type":"car","details":{"description":"Business
+        Class Lincoln, Cadillac or Similar","time":20,"departure_datetime":"2023-12-01T15:30:00-08:00","notes":"","provider":{"id":1317,"uid":"3f98bb56-8c27-4006-b348-bedc80c304b4","name":"ICS,
+        Book A Limo","is_active":true,"url":null,"report_currency":"USD","email":"reservations@bookalimo.com","phone_number":"+18002665254","logo_url":"https://static.mozio.com/providers/logos/defaults/blackcar_logo.png","rating":5,"options":{"twentyfour_hour_time":false},"description":null,"has_terms":false,"rating_count":1,"rating_with_decimals":"5.0","display_name":"ICS,
+        Book A Limo","supplier_score":null},"vehicle_type":{"key":3,"name":"Sedan"}}}],"ticket_data":{},"ticket_types":null,"pass_types":null,"amenities":[{"key":"sms_notifications","name":"SMS
+        Notification","description":"Receive SMS notification about your reservation
+        status updates","image_url":"https://static.mozio.com/amenities/sms-notification.svg","png_image_url":"https://static.mozio.com/amenities/sms-notification.png","input_type":"boolean","included":false,"selected":false,"internal":true,"price":{"value":"1.50","display":"$1.50","compact":"$1.50","currency":"USD"},"price_usd":"1.50"},{"key":"carbon_offset","name":"Carbon
+        Offset","description":"Make your ride carbon neutral","image_url":"https://static.mozio.com/amenities/carbon_offset.svg","png_image_url":"https://static.mozio.com/amenities/carbon_offset.png","input_type":"boolean","included":false,"selected":false,"internal":true,"price":{"value":"0.64","display":"$0.64","compact":"$0.64","currency":"USD"},"price_usd":"0.64","base_price":{"value":"0.14","display":"$0.14","compact":"$0.14","currency":"USD"},"base_price_usd":"0.14"}],"hourly_details":{"original_requested":0,"hours_requested":0,"minimum":0,"included_kilometers_per_hour":0,"total_included_kilometers":0},"flt_support":false},"can_cancel":true,"mozio_profit_usd":"39.21","partner_profit_usd":"0.00","gross_revenue_usd":"211.73","mozio_profit":"39.21","partner_profit":"0.00","gross_revenue":"211.73","credit_card":{"last4":"****","brand":""},"campaign":"Hashim
+        Hashimov","branch":"","cancelled":false,"timestamp":"2023-07-10T08:03:10Z","cancelled_timestamp":"","rebooked_id":null,"total_price":{"value":"211.73","display":"$211.73","compact":"$212"},"vat_amount":null,"nonrefundable_amount":{"value":"0.00","display":"$0.00","compact":"$0.00"},"phone_number_national":8776665544,"phone_number_country_code_name":"US","is_delayed_flight_info":false,"offers":{"extra_trip_offer":{"extra_trip_search_link":"https://www.mozio.com/en-us/?utm_source=btp&utm_medium=btp&utm_campaign=Extra+Trip+Upsell&campaign=OneWayUpsell&num_passengers=2&start_address=HNL&pickup_datetime=12%2F01%2F2023+02%3A20+PM&coupon_code=XTRIP_NXFSM","extra_trip_iata_code":"HNL","trip_direction":"from","extra_trip_coupon_percentage":10,"extra_trip_coupon_code":"XTRIP_NXFSM"}},"has_passed":false,"currency":"USD","provider":{"id":1317,"uid":"3f98bb56-8c27-4006-b348-bedc80c304b4","name":"ICS,
+        Book A Limo","is_active":true,"url":null,"report_currency":"USD","email":"reservations@bookalimo.com","phone_number":"+18002665254","logo_url":"https://static.mozio.com/providers/logos/defaults/blackcar_logo.png","rating":5,"options":{"twentyfour_hour_time":false},"description":null,"has_terms":false},"email":"pytest@gmail.com","phone_number":"+1
+        877-666-5544","first_name":"John","last_name":"Doe","airline":"AA","flight_number":"123","airport_terminal":"","pickup_time_buffer":null,"customer_special_instructions":"I
+        am from VCR testing","partner_tracking_id":"","consent_for_contact":false,"extra_pax_info":[],"cruise_line":"","ship_name":"","train_company":null,"train_number":null,"return_train_company":"","return_train_number":"","flight_type":"","google_analytics_client_id":"","loyalty":null}]}'
+    headers:
+      Allow:
+      - GET, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en-us
+      Content-Length:
+      - '8621'
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 10 Jul 2023 08:05:09 GMT
+      Server:
+      - gunicorn
+      Vary:
+      - Accept, Origin, Accept-Language, Cookie
+    status:
+      code: 200
+      message: OK
+version: 1

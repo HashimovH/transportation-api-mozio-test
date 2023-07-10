@@ -34,7 +34,7 @@ class CancelReservationAPIResponse(BaseModel):
     cancelled: bool
 
 
-class SearchResultResponseVehicle(BaseModel):
+class Vehicle(BaseModel):
     image_url: Optional[str]
     vehicle_type: Optional[str]
     max_bags: Optional[int]
@@ -63,7 +63,7 @@ class SearchResultReponse(BaseModel):
     price: str
     price_currency: str
     description: str
-    vehicle: Optional[SearchResultResponseVehicle]
+    vehicle: Optional[Vehicle]
     time: int
     provider: Optional[SearchResultResponseProvider]
     can_cancel_online: bool
@@ -80,3 +80,7 @@ class SearchResultReponse(BaseModel):
     notes: Optional[str]
     terms: Optional[str]
     can_booked: bool
+
+
+class SearchResultsResponseList(BaseModel):
+    __root__: list[SearchResultReponse]
