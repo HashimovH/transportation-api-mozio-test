@@ -11,6 +11,7 @@ from app.clients.mozio.schemas.search import (
     StartSearchProcessRequest,
     StartSearchProcessResponse,
 )
+from app.routers.schemas import StartReservationAPIRequest
 
 
 class MozioClient(TransporationClient):
@@ -44,7 +45,9 @@ class MozioClient(TransporationClient):
         response = self._make_request(method, url)
         return PollSearchResponse(**response.json())
 
-    def start_reservation(self, request) -> StartReservationResponse:
+    def start_reservation(
+        self, request: StartReservationAPIRequest
+    ) -> StartReservationResponse:
         method = HTTPMethod.POST
         url = "reservations/"
         response = self._make_request(method, url, request.dict())

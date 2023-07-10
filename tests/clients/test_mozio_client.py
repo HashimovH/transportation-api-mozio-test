@@ -1,6 +1,8 @@
 import pytest
 
 from app.clients.mozio.mozio_client import MozioClient
+from app.clients.mozio.schemas.search import StartSearchProcessRequest
+from app.routers.schemas import StartReservationAPIRequest
 
 
 @pytest.fixture(scope="session")
@@ -12,15 +14,15 @@ def client():
 
 @pytest.mark.vcr
 def test_start_search(client):
-    request = {
-        "start_address": "44 Tehama Street, San Francisco, CA, USA",
-        "end_address": "SFO",
-        "mode": "one_way",
-        "pickup_datetime": "2023-12-01 15:30",
-        "num_passengers": 2,
-        "currency": "USD",
-        "campaign": "Hashim Hashimov",
-    }
+    request = StartSearchProcessRequest(
+        start_address="44 Tehama Street, San Francisco, CA, USA",
+        end_address="SFO",
+        mode="one_way",
+        pickup_datetime="2023-12-01 15:30",
+        num_passengers=2,
+        currency="USD",
+        campaign="Hashim Hashimov",
+    )
     response = client.start_search(request)
     assert response
     assert response.currency_info.code == "USD"
@@ -56,18 +58,18 @@ def test_poll_search(client):
 
 @pytest.mark.vcr
 def test_start_reservation(client):
-    request = {
-        "search_id": "d1e0c6e8526046d8b73d7ce3c44b5403",
-        "result_id": "0065652958e49ffe698cca03fdf8c9e4",
-        "email": "pytest@gmail.com",
-        "country_code_name": "US",
-        "phone_number": "8776665544",
-        "first_name": "John",
-        "last_name": "Doe",
-        "airline": "AA",
-        "flight_number": "123",
-        "customer_special_instructions": "I am from VCR testing",
-    }
+    request = StartReservationAPIRequest(
+        search_id="d1e0c6e8526046d8b73d7ce3c44b5403",
+        result_id="0065652958e49ffe698cca03fdf8c9e4",
+        email="pytest@gmail.com",
+        country_code_name="US",
+        phone_number="8776665544",
+        first_name="John",
+        last_name="Doe",
+        airline="AA",
+        flight_number="123",
+        customer_special_instructions="I am from VCR testing",
+    )
     response = client.start_reservation(request)
     assert response
     assert response.status.value == "pending"

@@ -23,4 +23,4 @@ lint: ## Run code linters
 	mypy app tests
 
 test: ## Run unit tests with coverage    
-	python -m pytest tests/unit --lf --durations=5
+	python -m pytest tests --lf --durations=5

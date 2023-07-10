@@ -2,11 +2,11 @@ from typing import Optional
 
 from pydantic import BaseModel
 
-from app.clients.mozio.schemas.common import MozioFlightTypes, MozioModes
+from app.clients.mozio.schemas.common import MozioFlightTypes
 
 
 class StartSearchProcessRequest(BaseModel):
-    mode: MozioModes
+    mode: str
     start_address: str
     end_address: str
     pickup_datetime: str
