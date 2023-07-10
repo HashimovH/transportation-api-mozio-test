@@ -1,11 +1,16 @@
 anyio==3.7.1
-    # via starlette
+    # via
+    #   httpcore
+    #   starlette
 black==23.3.0
     # via -r requirements.dev.in
 build==0.10.0
     # via pip-tools
 certifi==2023.5.7
-    # via requests
+    # via
+    #   httpcore
+    #   httpx
+    #   requests
 charset-normalizer==3.2.0
     # via requests
 click==8.1.4
@@ -31,10 +36,17 @@ fastapi==0.99.1
 flake8==6.0.0
     # via -r requirements.dev.in
 h11==0.14.0
-    # via uvicorn
+    # via
+    #   httpcore
+    #   uvicorn
+httpcore==0.17.3
+    # via httpx
+httpx==0.24.1
+    # via -r requirements.in
 idna==3.4
     # via
     #   anyio
+    #   httpx
     #   requests
     #   yarl
 iniconfig==2.0.0
@@ -94,7 +106,10 @@ requests==2.31.0
 six==1.16.0
     # via vcrpy
 sniffio==1.3.0
-    # via anyio
+    # via
+    #   anyio
+    #   httpcore
+    #   httpx
 starlette==0.27.0
     # via fastapi
 tomli==2.0.1
@@ -106,6 +121,10 @@ tomli==2.0.1
     #   pip-tools
     #   pyproject-hooks
     #   pytest
+types-requests==2.31.0.1
+    # via -r requirements.dev.in
+types-urllib3==1.26.25.13
+    # via types-requests
 typing-extensions==4.7.1
     # via
     #   black

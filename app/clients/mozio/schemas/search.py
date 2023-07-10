@@ -38,11 +38,11 @@ class SearchProcessResponseBase(BaseModel):
     end_location: StartSearchProcessResponseLocation
     start_location: StartSearchProcessResponseLocation
     more_coming: bool
-    allow_delayed_flight_info: bool
+    allow_delayed_flight_info: Optional[bool]
     expires_at: int
     expires_in: int
     search_id: Optional[str]
-    num_passengers: Optional[int]  # TODO: Should be positive >=1
+    num_passengers: Optional[int]
     hourly_booking_duration: Optional[int] = 0
     flight_datetime: Optional[str]
     flight_type: Optional[MozioFlightTypes]
@@ -131,4 +131,3 @@ class StartSearchProcessResponse(SearchProcessResponseBase):
 
 class PollSearchResponse(SearchProcessResponseBase):
     results: list[SearchResult]
-    allow_delayed_flight_info: Optional[bool]

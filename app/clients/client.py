@@ -1,5 +1,6 @@
 import abc
 import enum
+from typing import Optional
 
 import requests
 
@@ -20,11 +21,11 @@ class TransporationClient(abc.ABC):
     requires_polling = False
 
     def make_request(
-        self, method: HTTPMethod, url: str, data=None, headers: dict = dict({})
+        self, method: HTTPMethod, url: str, data: Optional[dict] = None, headers: dict = dict({})
     ) -> requests.Response:
         try:
             response: requests.Response = requests.request(
-                method=method, url=url, headers=headers, json=data
+                method=method.value, url=url, headers=headers, json=data
             )
             response.raise_for_status()
         except requests.exceptions.HTTPError as e:

@@ -15,13 +15,10 @@ def vcr_config():
 @fixture(scope="module")
 def vcr_cassette_dir(request):
     test_root = os.path.dirname(__file__)
-    print(test_root)
-    print(request.fspath)
     relative_test_file_location = (
         str(request.fspath)
         .removeprefix(test_root)
         .removesuffix(".py")
         .removeprefix("/")
     )
-    print(relative_test_file_location)
     return test_root + "\\cassettes" + relative_test_file_location

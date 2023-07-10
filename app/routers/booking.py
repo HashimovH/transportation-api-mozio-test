@@ -51,7 +51,7 @@ def start_reservation(
     return booking_service.start_reservation(request)
 
 
-@router.get("/api/v1/reservation/{reservation_id}")
+@router.get("/api/v1/reservation/{reservation_id}/more")
 def poll_reservation(
     reservation_id: str, booking_service: BookingService = get_booking_service
 ):

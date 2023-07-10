@@ -15,6 +15,7 @@ class StartSearchAPIRequest(BaseModel):
 
 class StartOperationsAPIResponse(BaseModel):
     is_loading: bool
+    search_id: str
 
 
 class StartReservationAPIRequest(BaseModel):
@@ -63,7 +64,7 @@ class SearchResultReponse(BaseModel):
     tags: Optional[list]
     price: str
     price_currency: str
-    description: str
+    description: Optional[str]
     vehicle: Optional[Vehicle]
     time: int
     provider: Optional[SearchResultResponseProvider]

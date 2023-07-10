@@ -9,6 +9,6 @@ from app.services.booking_service import BookingService
 def get_booking_service() -> BookingService:
     return BookingService(
         transportation_client=MozioClient(
-            settings.MOZIO_BASE_URL, settings.MOZIO_ACCESS_TOKEN
+            settings.MOZIO_BASE_URL, settings.MOZIO_API_KEY
         )
     )

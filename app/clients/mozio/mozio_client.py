@@ -1,8 +1,6 @@
-import enum
-
 import requests
 
-from app.clients.client import TransporationClient
+from app.clients.client import HTTPMethod, TransporationClient
 from app.clients.mozio.schemas.reservation import (
     CancelReservationResponse,
     PollReservationResponse,
@@ -13,12 +11,6 @@ from app.clients.mozio.schemas.search import (
     StartSearchProcessRequest,
     StartSearchProcessResponse,
 )
-
-
-class HTTPMethod(enum.Enum):
-    POST = "POST"
-    GET = "GET"
-    DELETE = "DELETE"
 
 
 class MozioClient(TransporationClient):
@@ -36,38 +28,36 @@ class MozioClient(TransporationClient):
             "Content-Type": "application/json",
         }
         url = f"{self.base_url}{url}"
-
         return self.make_request(method, url, data, headers)
 
     def start_search(
         self, request: StartSearchProcessRequest
     ) -> StartSearchProcessResponse:
-        method = "POST"
+        method = HTTPMethod.POST
         url = "search/"
-        response = self._make_request(method, url, request)
-        print(response)
+        response = self._make_request(method, url, request.dict())
         return StartSearchProcessResponse(**response.json())
 
     def poll_search(self, search_id: str) -> PollSearchResponse:
-        method = "GET"
+        method = HTTPMethod.GET
         url = f"search/{search_id}/poll"
         response = self._make_request(method, url)
         return PollSearchResponse(**response.json())
 
     def start_reservation(self, request) -> StartReservationResponse:
-        method = "POST"
+        method = HTTPMethod.POST
         url = "reservations/"
-        response = self._make_request(method, url, request)
+        response = self._make_request(method, url, request.dict())
         return StartReservationResponse(**response.json())
 
     def poll_reservation(self, search_id: str) -> PollReservationResponse:
-        method = "GET"
+        method = HTTPMethod.GET
         url = f"reservations/{search_id}/poll"
         response = self._make_request(method, url)
         return PollReservationResponse(**response.json())
 
     def cancel_reservation(self, confirmation_number: str) -> CancelReservationResponse:
-        method = "DELETE"
+        method = HTTPMethod.DELETE
         url = f"reservations/{confirmation_number}"
         response = self._make_request(method, url)
         return CancelReservationResponse(**response.json())

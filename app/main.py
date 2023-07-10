@@ -9,7 +9,7 @@ app = FastAPI(
     docs_url="/docs",
     redoc_url=None,
     openapi_url="/public/openapi.json",
-    debug=settings.DEBUG,
+    debug=bool(settings.DEBUG or False),
 )
 
 app.include_router(booking.router)

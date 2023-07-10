@@ -5,6 +5,7 @@ from app.routers.schemas import (
     StartReservationAPIRequest,
     StartSearchAPIRequest,
 )
+from app.services.exceptions import ReservationFailed
 
 
 class BookingService:
@@ -15,7 +16,7 @@ class BookingService:
         self, request: StartSearchAPIRequest
     ) -> StartOperationsAPIResponse:
         response = self.transportation_client.start_search(request)
-        return StartOperationsAPIResponse(is_loading=response.more_coming)
+        return StartOperationsAPIResponse(is_loading=response.more_coming, search_id=response.search_id)
 
     def poll_search_process(self, search_id: str) -> SearchResultsResponseList:
         response = self.transportation_client.poll_search(search_id)
@@ -29,17 +30,19 @@ class BookingService:
     ) -> StartOperationsAPIResponse:
         response = self.transportation_client.start_reservation(request)
         if response.status.value == "failed":
-            raise Exception("Reservation failed")  # TODO: Proper exception
+            raise ReservationFailed()
         elif response.status.value == "pending":
-            return StartOperationsAPIResponse(is_loading=True)
+            return StartOperationsAPIResponse(is_loading=True, search_id=request.search_id)
         elif response.status.value == "confirmed":
-            return StartOperationsAPIResponse(is_loading=False)
+            return StartOperationsAPIResponse(is_loading=False, search_id=request.search_id)
+
+        raise ReservationFailed()
 
     def poll_reservation(self, search_id: str) -> tuple[list, bool]:
         response = self.transportation_client.poll_reservation(search_id)
         more_coming = False
         if response.status.value == "failed":
-            raise Exception("Reservation failed")  # TODO: Proper exception
+            raise ReservationFailed()
         elif response.status.value == "pending":
             more_coming = True
 
