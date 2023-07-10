@@ -25,7 +25,5 @@ jobs:
         run: |
           make lint
       - name: Unit Testing with pytest
-        env:
-          # add environment variables for tests
         run: |
           make test
