@@ -1,7 +1,7 @@
 from fastapi import FastAPI
+
 from app import settings
 from app.routers import booking
-
 
 app = FastAPI(
     title="Transportation Booking API",

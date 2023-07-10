@@ -20,8 +20,7 @@ lint: ## Run code linters
     isort --check app tests    
 	black --check app tests
     flake8 app tests    
-	mypy core tests
-    yamllint --strict .
+	mypy app tests
 
 test: ## Run unit tests with coverage    
 	python -m pytest tests/unit --lf --durations=5

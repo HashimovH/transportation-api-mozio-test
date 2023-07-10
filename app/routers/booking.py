@@ -16,8 +16,7 @@ router = APIRouter()
 @router.post(
     "/api/v1/search",
     response_model=StartOperationsAPIResponse,
-    description="""Starts a search process and returns status of loading parameter. 
-    Send second request to /api/v1/search/{search_id}/more to get results.""",
+    description="Starts a search process and returns status of loading parameter, Use Polling",
     name="Start Search",
     tags=["search"],
 )
@@ -31,8 +30,7 @@ def start_search(
 @router.get(
     "/api/v1/search/{search_id}/more",
     response_model=SearchResultsResponseList,
-    description="""Returns results of search process. 
-    If loading is true, send another request to this endpoint to get more results.""",
+    description="Returns results of search process.",
     name="Get Search Results",
     tags=["search"],
 )

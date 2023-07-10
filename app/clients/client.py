@@ -21,7 +21,11 @@ class TransporationClient(abc.ABC):
     requires_polling = False
 
     def make_request(
-        self, method: HTTPMethod, url: str, data: Optional[dict] = None, headers: dict = dict({})
+        self,
+        method: HTTPMethod,
+        url: str,
+        data: Optional[dict] = None,
+        headers: dict = dict({}),
     ) -> requests.Response:
         try:
             response: requests.Response = requests.request(

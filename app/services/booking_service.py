@@ -16,7 +16,9 @@ class BookingService:
         self, request: StartSearchAPIRequest
     ) -> StartOperationsAPIResponse:
         response = self.transportation_client.start_search(request)
-        return StartOperationsAPIResponse(is_loading=response.more_coming, search_id=response.search_id)
+        return StartOperationsAPIResponse(
+            is_loading=response.more_coming, search_id=response.search_id
+        )
 
     def poll_search_process(self, search_id: str) -> SearchResultsResponseList:
         response = self.transportation_client.poll_search(search_id)
@@ -32,9 +34,13 @@ class BookingService:
         if response.status.value == "failed":
             raise ReservationFailed()
         elif response.status.value == "pending":
-            return StartOperationsAPIResponse(is_loading=True, search_id=request.search_id)
+            return StartOperationsAPIResponse(
+                is_loading=True, search_id=request.search_id
+            )
         elif response.status.value == "confirmed":
-            return StartOperationsAPIResponse(is_loading=False, search_id=request.search_id)
+            return StartOperationsAPIResponse(
+                is_loading=False, search_id=request.search_id
+            )
 
         raise ReservationFailed()
 

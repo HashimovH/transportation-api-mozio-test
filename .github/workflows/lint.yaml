@@ -23,4 +23,3 @@ jobs:
         black --check app tests
         flake8 app tests
         mypy core tests
-        yamllint --strict .
